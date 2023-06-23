@@ -1,0 +1,47 @@
+version: "3"
+services:
+    metabase:
+        build:
+            context: ./metabase
+            dockerfile: Dockerfile
+        ports:
+            - 3000:3000
+        networks:
+            - metabase_net
+            - db_net
+        restart: on-failure
+        volumes:
+            - ./metabase/metabase.db:/metabase.db
+
+    db:
+        build:
+            context: ./db
+            dockerfile: Dockerfile
+        volumes:
+            - ./db/db_data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - 3320:3306
+        networks:
+            - db_net
+        restart: on-failure
+
+    proxy:
+        build:
+            context: ./proxy
+            dockerfile: Dockerfile
+        ports:
+            - 80:80
+        depends_on:
+            - metabase
+        networks:
+            - metabase_net
+        restart: on-failure
+
+networks:
+    metabase_net:
+    db_net:
