@@ -9,7 +9,7 @@ services:
         networks:
             - metabase_net
             - db_net
-        restart: on-failure
+        restart: always
         volumes:
             - ./metabase/metabase.db:/metabase.db
 
@@ -17,6 +17,8 @@ services:
         build:
             context: ./db
             dockerfile: Dockerfile
+        env_file:
+            - ./.dev.env
         volumes:
             - ./db/db_data:/var/lib/mysql
         environment:
@@ -28,7 +30,7 @@ services:
             - 3320:3306
         networks:
             - db_net
-        restart: on-failure
+        restart: always
 
     proxy:
         build:
@@ -40,7 +42,7 @@ services:
             - metabase
         networks:
             - metabase_net
-        restart: on-failure
+        restart: always
 
 networks:
     metabase_net:
