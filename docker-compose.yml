@@ -18,7 +18,7 @@ services:
             context: ./db
             dockerfile: Dockerfile
         env_file:
-            - ./.dev.env
+            - ./env
         volumes:
             - ./db/db_data:/var/lib/mysql
         environment:
