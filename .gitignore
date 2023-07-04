@@ -1,5 +1,5 @@
 .dev.env
 ec2_userdata.sh
 memo.txt
-metabase/db/db_data/
-metabase/metabase.db/
+db/db_data/
+metabase.db/
