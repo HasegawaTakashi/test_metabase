@@ -3,3 +3,4 @@ ec2_userdata.sh
 memo.txt
 db/db_data/
 metabase.db/
+aws_resource.adoc
