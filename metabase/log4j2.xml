@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <RollingFile name="InfoFile" fileName="/logs/info_logs/metabase_info.log" filePattern="/logs/metabase_info.log.%d{yyyy-MM-dd}.gz">
+      <PatternLayout>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+      </PatternLayout>
+      <Filters>
+        <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+      </Filters>
+      <TimeBasedTriggeringPolicy />
+      <DefaultRolloverStrategy max="14" />
+    </RollingFile>
+    <RollingFile name="WarnFile" fileName="/logs/warn_logs/metabase_warn.log" filePattern="/logs/metabase_warn.log.%d{yyyy-MM-dd}.gz">
+      <PatternLayout>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+      </PatternLayout>
+      <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+      <TimeBasedTriggeringPolicy />
+      <DefaultRolloverStrategy max="14" />
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="InfoFile"/>
+      <AppenderRef ref="WarnFile"/>
+    </Root>
+  </Loggers>
+</Configuration>

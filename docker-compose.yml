@@ -12,7 +12,7 @@ services:
         restart: always
         volumes:
             - ./metabase/metabase.db:/metabase.db
-            - ./metabase/log4j.properties:/log4j.properties
+            - ./metabase/log4j2.xml:/log4j2.xml
             - ./metabase/logs/:/logs/
 
     db:

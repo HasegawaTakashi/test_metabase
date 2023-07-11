@@ -4,3 +4,5 @@ memo.txt
 db/db_data/
 metabase.db/
 aws_resource.adoc
+logs/info_logs/metabase_info.log
+logs/warn_logs/metabase_warn.log
